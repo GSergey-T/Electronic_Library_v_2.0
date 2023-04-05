@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Начальная страница</title>
+</head>
+<body>
+<font size="4" color="gray" face="Times New Roman">Электронная библиотека</font>
+<hr/>
+<a style="color: brown" th:size="4" >Список читателей:</a>
+<br>
+<form th:method="GET" th:action="@{/people}" >
+    <input type="submit" value="Перейти к читателям"/>
+</form>
+<br>
+<a style="color: brown">Список литературы:</a>
+<br>
+<form th:method="GET" th:action="@{/books}" >
+    <input type="submit" value="Перейти к литературе"/>
+</form>
+</body>
+</html>

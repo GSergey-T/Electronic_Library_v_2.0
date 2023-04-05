@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Читатель</title>
+</head>
+<body>
+
+
+Имя:
+<a th:text="${person.getFullName()}">name</a>
+<br>
+Год рождения:
+<a th:text="${person.getYearOfBirth()}">age</a>
+<br>
+<br>
+
+<!-- IF -->
+<div th:if="${books}">
+    <strong>Книги:</strong>
+    <br>
+    <div th:each="book : ${books}">
+        <!-- Если есть просрочка, то название книги будет красным -->
+        <div th:if="${book.getOverdue() == true}">
+            <a style="color: red" th:text="${book.getName() + ', ' + book.getAutor() + ', ' + book.getYearOfPrinting()}">book</a>
+        </div>
+        <div th:if="${book.getOverdue() == false}">
+            <a th:text="${book.getName() + ', ' + book.getAutor() + ', ' + book.getYearOfPrinting()}">book</a>
+        </div>
+    </div>
+</div>
+
+<!-- ELSE -->
+<div th:unless="${books}">
+    <div th:text="'Человек пока не взял ни одной книги'">false</div>
+</div>
+
+<hr>
+<form th:method="GET" th:action="@{/people/{id}/edit(id=${person.getId()})}" >
+    <input type="submit" value="Редактировать"/>
+</form>
+<br>
+<form th:method="DELETE" th:action="@{/people/{id}/delete (id=${person.getId()})}" >
+    <input type="submit" value="Удалить"/>
+</form>
+<br>
+<form th:method="GET" th:action="@{/people}" >
+    <input type="submit" value="Назад"/>
+</form>
+</body>
+</html>
